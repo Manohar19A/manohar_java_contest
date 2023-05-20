@@ -32,8 +32,9 @@ public class PascalTriangle {
      public static void main(String[] args) {
         int numRows = 5;
         printPascalTriangle(numRows);
-        // for (int i = 0; i < 5; i++) {
-        //     for (int j = 1; j < 5 - i; j++) {
+        // commented code is for iteration to generate pascal
+        // for (int i = 0; i < numRows; i++) {
+        //     for (int j = 1; j < numRows- i; j++) {
         //         System.out.print(" ");
         //     }
         //     int num = 1;
