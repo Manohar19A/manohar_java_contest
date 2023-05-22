@@ -7,9 +7,11 @@ import java.util.stream.Stream;
 
 public class ProductService {
 	List<Product> products = new ArrayList<>();
+	ProductDB db = new ProductDB();
 	
 	public void addProduct(Product p) {
-		products.add(p);
+//		products.add(p);
+		db.save(p);
 		
 	}
 	public List<Product> getAllProducts(){
@@ -25,8 +27,8 @@ public class ProductService {
 	}
 	public List<Product> getProductWithText(String text){
 		String str = text.toLowerCase();
-		List<Product> prods = new ArrayList<Product>();
-		List<Product> filteredList = prods.stream()
+//		List<Product> prods = new ArrayList<Product>();
+		List<Product> filteredList = products.stream()
 			    .filter(obj -> obj.getPlace().toLowerCase().contains(str)|| obj.getName().toLowerCase().contains(str) ||obj.getType().toLowerCase().contains(str))
 			    .collect(Collectors.toList());
 //		for(Product p:products) {
@@ -44,8 +46,8 @@ public class ProductService {
 	public List<Product> getProductByPlace(String text){
 		String str = text.toLowerCase();
 		
-		List<Product> prods = new ArrayList<Product>();
-		List<Product> filteredList = prods.stream()
+//		List<Product> prods = new ArrayList<Product>();
+		List<Product> filteredList = products.stream()
 			    .filter(obj -> obj.getPlace().toLowerCase().contains(str))
 			    .collect(Collectors.toList());
 //		for(Product p:products) {
@@ -60,8 +62,8 @@ public class ProductService {
 		
 	}
 	public List<Product> getProductByWarranty(int year){
-		List<Product> prods = new ArrayList<Product>();
-		List<Product> filteredList = prods.stream()
+//		List<Product> prods = new ArrayList<Product>();
+		List<Product> filteredList = products.stream()
 			    .filter(obj -> obj.getWarranty() >= year)
 			    .collect(Collectors.toList());
 //		List<Product> data = prods.stream().map(n->n.getWarranty() >= year);
