@@ -1,5 +1,4 @@
-package com.req.java_contest.java_mac;
-
+package com.telusuko.product;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;

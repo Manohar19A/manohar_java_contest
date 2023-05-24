@@ -1,21 +1,16 @@
-package com.req.java_contest.java_mac;
+package com.telusuko.product;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.yaml.snakeyaml.constructor.Constructor;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
+@SpringBootApplication
+public class ProductApplication {
 
-class Apple {
-	private void repair(int cost) {
-		System.out.println("Repairing" + cost);
-	}
-}
-
-interface reflect {
-}
-
-public class App {
-
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws ClassNotFoundException {
+//		SpringApplication.run(ProductApplication.class, args);
+//		
+//		System.out.println("HI Manohar");
 		Class c = Class.forName("Apple");
 		System.out.println(c.getName());
 
@@ -38,4 +33,5 @@ public class App {
 		m.invoke(apple, 40);
 
 	}
+
 }

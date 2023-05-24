@@ -28,4 +28,8 @@ public class ProductServicde {
 		List<Product> products = productRepo.findByPlace(place);
 		return products;	
 	}
+	public Product addProduct(Product p) {
+		
+		return productRepo.save(p);
+	}
 }

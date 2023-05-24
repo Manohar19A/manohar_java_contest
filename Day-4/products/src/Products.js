@@ -9,6 +9,7 @@ const Products = () => {
     const [data, setData] = useState([])
     const [search, setSearch] = useState("")
     const keys = ["name", "place", "type", "warranty"]
+    const [status, setStatus] = useState(false)
     useEffect(() => {
         axios.get('http://localhost:8080/prod').then((res) => {
             console.log(res)
@@ -17,7 +18,10 @@ const Products = () => {
             .catch((err) => {
                 console.log(err)
             })
-    }, [])
+    }, [status])
+    const toggle = () => {
+        setStatus(!status)
+    }
     return (
         <Grid container direction='column' gap={2}>
 
@@ -34,11 +38,11 @@ const Products = () => {
                     }
                     />
 
-                    <AddProduct />
+                    <AddProduct toggle={toggle} />
                 </Grid>
                 {
                     data.length === 0 ? (<Typography>Loading...</Typography>) : (<>
-                        {data.filter(i => keys.some(key => i[key].includes(search))).map((item, index) => {
+                        {data.filter(i => i.place.includes(search) || i.name.includes(search) || i.type.includes(search)||i.warranty.toString().includes(search)).map((item, index) => {
                             return (
                                 <Grid item xs={12} sm={6} md={4} lg={3}>
                                     <Card item={item} index={index} />

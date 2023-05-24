@@ -8,7 +8,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import axios from 'axios';
-const AddProduct = () => {
+const AddProduct = ({toggle}) => {
     const [open, setOpen] = React.useState(false);
     const [form, setForm] = React.useState({});
     function setField(field, value) {
@@ -29,7 +29,9 @@ const AddProduct = () => {
 axios.post("http://localhost:8080/prod/addProduct",form).then((data) => {
     console.log(data);
     console.log(form);
-    setField(form)
+    toggle();
+    // setField(form)
+    handleClose()
 }).catch((error) => {
     alert("uplaod failed");
 });
