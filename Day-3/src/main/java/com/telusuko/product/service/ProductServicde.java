@@ -6,6 +6,9 @@ import java.util.List;
 import javax.websocket.server.ServerEndpoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.telusuko.product.entity.Product;
@@ -31,5 +34,24 @@ public class ProductServicde {
 	public Product addProduct(Product p) {
 		
 		return productRepo.save(p);
+	}
+	public List<Product> getRecords(Integer pageNumber, Integer pageSize) {
+		Pageable  p = PageRequest.of(pageNumber, pageSize);
+		Page<Product> pageProducts = productRepo.findAll(p);
+//		List<Product> allProducts = pageProducts.getContent();
+		List<Product> list = new ArrayList<>();
+		pageProducts.forEach(product ->{
+			Product pr = new Product();
+			pr.setId(product.getId());
+			pr.setName(product.getName());
+			pr.setType(product.getType());
+			pr.setPlace(product.getPlace());
+			pr.setWarranty(product.getWarranty());
+			list.add(pr);
+		});
+		
+				
+		return list;
+		
 	}
 }

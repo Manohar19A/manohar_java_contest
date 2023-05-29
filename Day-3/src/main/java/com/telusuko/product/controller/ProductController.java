@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.telusuko.product.entity.Product;
@@ -21,7 +22,6 @@ import com.telusuko.product.service.ProductServicde;
 @CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
 
-	
 	@Autowired
 	private ProductServicde productServicde;
 	
@@ -44,6 +44,11 @@ public class ProductController {
 	public Product addProduct(@RequestBody Product p) {
 		
 		return productServicde.addProduct(p);
+		
+	}
+	@GetMapping("/pagination")
+	public ResponseEntity<List<Product>> getRecords(@RequestParam Integer pageNumber, Integer pageSize ){
+		return new ResponseEntity<List<Product>>(productServicde.getRecords(pageNumber,pageSize),HttpStatus.OK);
 		
 	}
 	}

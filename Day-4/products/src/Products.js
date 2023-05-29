@@ -10,22 +10,28 @@ const Products = () => {
     const [search, setSearch] = useState("")
     const keys = ["name", "place", "type", "warranty"]
     const [status, setStatus] = useState(false)
+    const [size, setSize] = useState(15)
+    const [num, setNum] = useState(0)
     useEffect(() => {
-        axios.get('http://localhost:8080/prod').then((res) => {
+        axios.get(`http://localhost:8080/prod`).then((res) => {
             console.log(res)
             setData(res.data)
         })
             .catch((err) => {
                 console.log(err)
             })
-    }, [status])
+    }, [status, num])
     const toggle = () => {
         setStatus(!status)
+    }
+    const scroll = (i) => {
+        console.log(i, num)
+        setNum(num => num + 1)
     }
     return (
         <Grid container direction='column' gap={2}>
 
-            <Grid container spacing={3}>
+            <Grid container spacing={3} onScroll={scroll} >
                 <br />
                 <Grid container
                     spacing={3}
@@ -42,7 +48,7 @@ const Products = () => {
                 </Grid>
                 {
                     data.length === 0 ? (<Typography>Loading...</Typography>) : (<>
-                        {data.filter(i => i.place.includes(search) || i.name.includes(search) || i.type.includes(search)||i.warranty.toString().includes(search)).map((item, index) => {
+                        {data.filter(i => i.place.includes(search) || i.name.includes(search) || i.type.includes(search) || i.warranty.toString().includes(search)).map((item, index) => {
                             return (
                                 <Grid item xs={12} sm={6} md={4} lg={3}>
                                     <Card item={item} index={index} />
@@ -54,5 +60,4 @@ const Products = () => {
         </Grid>
     )
 }
-
 export default Products
