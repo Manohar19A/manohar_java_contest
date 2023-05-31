@@ -26,7 +26,7 @@ const ShortEndUrl = () => {
             {data && <h4>{data}</h4>}
             <br />
             <Button onClick={getUrl} variant="contained" color="primary">
-                Submit
+                ShortEndUrl
             </Button></div>
     )
 }
